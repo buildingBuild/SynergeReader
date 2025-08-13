@@ -1,0 +1,384 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.app-bg {
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Header Styles */
+.alpha-header {
+  text-align: center;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.alpha-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.alpha-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+/* Upload Card Styles */
+.alpha-upload-card {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  border: 2px dashed #e2e8f0;
+  transition: all 0.3s ease;
+  margin-bottom: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alpha-upload-card:hover {
+  border-color: #667eea;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+.alpha-upload-card.dragging {
+  border-color: #667eea;
+  background: #f8faff;
+  transform: scale(1.02);
+}
+
+.alpha-upload-icon {
+  margin-bottom: 20px;
+  opacity: 0.7;
+}
+
+.alpha-upload-hint {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.alpha-upload-hint strong {
+  color: #334155;
+}
+
+.pdf-accent {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.docx-accent {
+  color: #2563eb;
+  font-weight: 600;
+}
+
+.txt-accent {
+  color: #059669;
+  font-weight: 600;
+}
+
+.dim {
+  opacity: 0.6;
+  font-size: 0.9rem;
+}
+
+.alpha-upload-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.alpha-upload-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+}
+
+/* Preview Card Styles */
+.alpha-preview-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.alpha-preview-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.alpha-preview-text {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 20px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #334155;
+  max-height: 400px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.alpha-preview-text::-webkit-scrollbar {
+  width: 8px;
+}
+
+.alpha-preview-text::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.alpha-preview-text::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.alpha-preview-text::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* File Info Styles */
+.file-info {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #0369a1;
+  font-weight: 500;
+}
+
+.file-info span {
+  font-weight: 600;
+  color: #0c4a6e;
+}
+
+/* Error and Loading Styles */
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  color: #dc2626;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 500;
+}
+
+.loading-spinner {
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  border-radius: 8px;
+  padding: 12px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #0369a1;
+  font-weight: 500;
+  position: relative;
+}
+
+.loading-spinner::after {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #0369a1;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-content h2 {
+  color: #334155;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+/* Button Styles */
+button {
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-bg {
+    padding: 10px;
+  }
+  
+  .alpha-header h1 {
+    font-size: 2rem;
+  }
+  
+  .alpha-subtitle {
+    font-size: 1rem;
+  }
+  
+  .alpha-upload-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .alpha-preview-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-content {
+    width: 95%;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .alpha-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .alpha-upload-hint {
+    font-size: 1rem;
+  }
+  
+  .alpha-preview-text {
+    font-size: 0.9rem;
+    padding: 15px;
+  }
+}
+
+/* Selection Highlight */
+.alpha-preview-text::selection {
+  background: #667eea;
+  color: white;
+}
+
+.alpha-preview-text::-moz-selection {
+  background: #667eea;
+  color: white;
+}
+
+/* Focus States */
+.alpha-upload-btn:focus,
+button:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .alpha-upload-card,
+  .alpha-preview-card,
+  .modal-content {
+    border: 2px solid #000;
+  }
+  
+  .alpha-upload-btn {
+    background: #000;
+    color: #fff;
+  }
+}
