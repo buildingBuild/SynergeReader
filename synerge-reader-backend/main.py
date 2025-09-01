@@ -190,11 +190,13 @@ async def upload_document(file: UploadFile = File(...)):
             raise HTTPException(status_code=400, detail="Unsupported file type. Please upload PDF, TXT, or DOCX files.")
         
         # Check file size (20MB limit)
-        if file.size > 20 * 1024 * 1024:
-            raise HTTPException(status_code=400, detail="File too large. Maximum size is 20MB.")
+        content = await file.read()
+
+        if len(content) > 20 * 1024 * 1024:
+         raise HTTPException(status_code=400, detail="File too large. Maximum size is 20MB.")
         
         # Read file content
-        content = await file.read()
+    
         
         # For now, we'll assume text content is passed directly
         if file.filename.lower().endswith('.txt'):

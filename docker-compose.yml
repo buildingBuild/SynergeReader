@@ -1,16 +1,14 @@
-version: '3.8'
-
 services:
   backend:
     build:
       context: ./synerge-reader-backend
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "5001:5000"   # host:container (backend still runs on 5000 inside container)
     volumes:
       - ./synerge-reader-backend:/app
       - chroma_data:/app/chroma_db
-      - sqlite_data:/app
+      - sqlite_data:/app/sqlite_data
     environment:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
@@ -25,7 +23,7 @@ services:
       - ./synerge-reader-frontend:/app
       - /app/node_modules
     environment:
-      - REACT_APP_API_URL=http://localhost:5000
+      - REACT_APP_API_URL=http://localhost:5001   # updated to match new backend port
     depends_on:
       - backend
     restart: unless-stopped

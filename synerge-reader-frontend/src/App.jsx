@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
+import Title_logo from "./components/TitleLogo";
 import FileUpload from "./components/FileUpload";
 import TextPreview from "./components/TextPreview";
 import AskModal from "./components/AskModal";
 import "./App.css";
+
 
 function App() {
   const [parsedText, setParsedText] = useState("");
@@ -16,13 +18,13 @@ function App() {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/test")
+    fetch("http://localhost:5001/test")
       .then((res) => res.json())
       .then((data) => setBackendMsg(data.message))
       .catch(() => setBackendMsg("Could not connect to backend."));
-    fetch("http://localhost:5000/history")
+    fetch("http://localhost:5001/test")
       .then((res) => res.json())
-      .then((data) => setHistory(data))
+      .then((data) => setHistory(Array.isArray(data) ? data : []))
       .catch(() => setHistory([]));
   }, []);
 
@@ -35,12 +37,12 @@ function App() {
 
   const handleAsk = (question) => {
     if (!selectedText.trim()) {
-      setError("Please select some text from the document before asking a question.");
+      setError("No text selected. Please highlight a section of the document first.");
       return;
     }
 
     setIsLoading(true);
-    fetch("http://localhost:5000/ask", {
+    fetch("http://localhost:5001/ask", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ 
@@ -54,9 +56,12 @@ function App() {
         setIsLoading(false);
         setAskOpen(false);
         // Refresh history
-        fetch("http://localhost:5000/history")
+        fetch("http://localhost:5001/history")
           .then((res) => res.json())
-          .then((data) => setHistory(data));
+           .then((data) => {
+    setHistory(Array.isArray(data) ? data : []);
+  });
+
       })
       .catch(() => {
         setError("Could not get answer from backend.");
@@ -70,22 +75,25 @@ function App() {
       setAskOpen(true);
     }
   };
-
+//Upload & Preview PDF, DOCX, or TXT documents
   return (
     <div className="app-bg">
-      <header className="alpha-header">
-        <h1>SynergeReader</h1>
-        <div className="alpha-subtitle">
-          Upload & Preview PDF, DOCX, or TXT documents
-        </div>
-        <div style={{ marginTop: 8, color: '#2b926e', fontWeight: 500 }}>
+       <div style={{ marginTop: 8, color: '#2b926e', fontWeight: 500 }}>
           Backend status: {backendMsg}
         </div>
-        <div style={{ marginTop: 8, fontSize: '0.9em', color: '#666' }}>
-          Select text from the document to ask questions
+    <div className="cta">
+      <header className="alpha-header">
+        <h1>Synerge Reader</h1>
+        <Title_logo/>
+        <div className="alpha-subtitle">
+          Transform research papers into interactive AI analysis.
+        </div>
+       
+        <div className="highlightText" style={{ marginTop: 8, fontSize: '0.9em', color: '#666' }}>
+         <p> Highlight text in the document to ask questions.</p>
         </div>
       </header>
-      <main>
+     
         <FileUpload
           onFileParsed={handleFileParsed}
           setIsLoading={setIsLoading}
@@ -97,7 +105,9 @@ function App() {
           <div className="file-info">
             Uploaded: <span>{fileName}</span>
           </div>
+         
         )}
+        </div>
         <TextPreview text={parsedText} onSelect={handleTextSelection} />
         {selectedText && (
           <div style={{margin: '12px auto', maxWidth: 600, color: '#3b4ca0', background: '#f0f4ff', padding: 12, borderRadius: 6}}>
@@ -170,7 +180,7 @@ function App() {
             </div>
           )}
         </div>
-      </main>
+     
     </div>
   );
 }
