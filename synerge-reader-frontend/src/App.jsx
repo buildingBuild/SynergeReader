@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Title_logo from "./components/TitleLogo";
+import TitleLogo from "./components/TitleLogo";
 import FileUpload from "./components/FileUpload";
 import TextPreview from "./components/TextPreview";
 import AskModal from "./components/AskModal";
+
 import "./App.css";
 
 
@@ -78,22 +79,17 @@ function App() {
 //Upload & Preview PDF, DOCX, or TXT documents
   return (
     <div className="app-bg">
-       <div style={{ marginTop: 8, color: '#2b926e', fontWeight: 500 }}>
-          Backend status: {backendMsg}
-        </div>
     <div className="cta">
       <header className="alpha-header">
-        <h1>Synerge Reader</h1>
-        <Title_logo/>
+        <TitleLogo/>
         <div className="alpha-subtitle">
           Transform research papers into interactive AI analysis.
-        </div>
-       
-        <div className="highlightText" style={{ marginTop: 8, fontSize: '0.9em', color: '#666' }}>
-         <p> Highlight text in the document to ask questions.</p>
+        </div>   
+        <div className="highlightText" style={{ marginTop: 3, fontSize: '0.9em', color: '#666' }}>
+         <p> Highlight Text In The Document To Ask Questions.</p>
         </div>
       </header>
-     
+      <div className="overallFile"> 
         <FileUpload
           onFileParsed={handleFileParsed}
           setIsLoading={setIsLoading}
@@ -107,6 +103,7 @@ function App() {
           </div>
          
         )}
+        </div>
         </div>
         <TextPreview text={parsedText} onSelect={handleTextSelection} />
         {selectedText && (
@@ -180,7 +177,9 @@ function App() {
             </div>
           )}
         </div>
-     
+      <div className="statusText">
+          Backend status: {backendMsg}
+        </div>
     </div>
   );
 }

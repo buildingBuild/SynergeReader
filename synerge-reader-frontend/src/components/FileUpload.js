@@ -56,7 +56,7 @@ export default function FileUpload({ onFileParsed, setIsLoading, setError }) {
 
 
   return (
-    <div style={{ margin: "16px 0" }}>
+    <div className="fileBox" style={{}}>
       <input
         ref={inputRef}
         type="file"

@@ -8,7 +8,6 @@
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
 }
 
@@ -21,34 +20,65 @@ body {
   background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
 }
 
-/* Header Styles */
-.alpha-header {
-  text-align: center;
-  margin-bottom: 70px;
-  font-optical-sizing: auto;
- 
+.statusText{
+display: flex;
+justify-content: center;
+color: #08f77b;
+
 }
 
-.alpha-header h1 {
-  font-family: "Montserrat", sans-serif;
-  font-size: 3rem;
-  font-weight: 600;
-  margin-bottom: 10px;
+.TitleLogo{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 15px;
+}
 
+.TitleLogo img{
+width: 70px;
+ height: 70px;
+}
+
+.TitleLogo h1 {
+font-size: 4rem;
+margin-bottom: 10px;
+font-weight: 500;
+font-family: "Public Sans", sans-serif;
+}
+
+.alpha-header {
+display: flex;
+flex-direction: column;
+text-align: center;
+margin-bottom: 70px;
+font-optical-sizing: auto;
 }
 
  .alpha-header p{
-
-color: white;
-  font-size: 1.3em;
+color: #edf6ff;
+font-size: 1.5em;
+letter-spacing: 1px;
+font-weight: 500;
+color: #99ccff;
 }
 
 .alpha-subtitle {
-  font-size: 1.2rem;
+  font-size: 1.34rem;
   opacity: 0.9;
   margin-bottom: 10px;
   font-style: italic;
+  letter-spacing: 1px;
 }
+
+.fileBox{
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 40px;
+
+}
+
 
 /* Upload Card Styles */
 .alpha-upload-card {

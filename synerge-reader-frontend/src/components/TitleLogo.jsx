@@ -1,12 +1,10 @@
-//import {motion} from 'framer-motion'
-
-
-function Title_logo() {
+import logo from '../'
+function TitleLogo() {
 
 return(
-<div>
+<div className="TitleLogo">
     
-        <img src="/logo.png" alt="spinning logo" />
+        <img src="/atom.png" alt="spinning logo" />
         <h1>Synergy Reader</h1>
 
     </div>
@@ -14,4 +12,4 @@ return(
 
 
 }
-export default Title_logo
+export default TitleLogo
