@@ -3,6 +3,7 @@ import TitleLogo from "./components/TitleLogo";
 import FileUpload from "./components/FileUpload";
 import TextPreview from "./components/TextPreview";
 import AskModal from "./components/AskModal";
+import FooterM from "./components/FooterM";
 
 import "./App.css";
 
@@ -180,6 +181,7 @@ function App() {
       <div className="statusText">
           Backend status: {backendMsg}
         </div>
+      <FooterM></FooterM>
     </div>
   );
 }

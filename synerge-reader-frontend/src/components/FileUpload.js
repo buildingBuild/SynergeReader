@@ -64,9 +64,19 @@ export default function FileUpload({ onFileParsed, setIsLoading, setError }) {
         style={{ display: "none" }}
         onChange={handleChange}
       />
-      <button onClick={handlePick} disabled={uploading}>
-        {uploading ? "Uploading..." : "Choose File"}
-      </button>
+
+      <div className="fileInput" onClick={handlePick}>
+        <img src="/uploadIcon.svg" style={{ filter: "brightness(0) invert(1)", marginTop: "-30px", marginBottom: "-17px" }}></img>
+        <span> {uploading ? "Uploading..." : ""} </span>
+        <span style={{ marginBottom: "20px" }}>Upload File </span>
+        <div className="iconSpan">
+          <img src="/pdf1.png"></img>
+          <img src="/txt.png"></img>
+          <img src="/docx.png"></img>
+        </div>
+
+
+      </div>
     </div>
   );
 }
