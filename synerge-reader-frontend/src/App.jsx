@@ -18,6 +18,7 @@ function App() {
   const [askOpen, setAskOpen] = useState(false);
   const [answer, setAnswer] = useState(null);
   const [history, setHistory] = useState([]);
+  const [fileMeta, setFileMeta] = useState(null);
 
   useEffect(() => {
     fetch("http://localhost:5001/test")
@@ -30,9 +31,11 @@ function App() {
       .catch(() => setHistory([]));
   }, []);
 
-  const handleFileParsed = (text, name) => {
+  const handleFileParsed = (text, name,meta) => {
+    
     setParsedText(text);
     setFileName(name);
+    setFileMeta(meta)
     setIsLoading(false);
     setError("");
   };
@@ -100,13 +103,21 @@ function App() {
         {isLoading && <div className="loading-spinner">Processing...</div>}
         {fileName && (
           <div className="file-info">
-            Uploaded: <span>{fileName}</span>
+            <h1>File Meta Data</h1>
+           <p>File Selected: <span>{fileName}</span> </p> 
           </div>
          
         )}
         </div>
         </div>
-        <TextPreview text={parsedText} onSelect={handleTextSelection} />
+        <div style={{color: 'red', fontSize: 12}}>
+ 
+   
+</div>
+        {fileName && parsedText && (
+ 
+  <TextPreview text={parsedText || ""} onSelect={handleTextSelection} />
+)}
         {selectedText && (
           <div style={{margin: '12px auto', maxWidth: 600, color: '#3b4ca0', background: '#f0f4ff', padding: 12, borderRadius: 6}}>
             <strong>Selected Context:</strong> {selectedText.substring(0, 200)}{selectedText.length > 200 ? '...' : ''}
@@ -154,30 +165,49 @@ function App() {
             )}
           </div>
         )}
-        <div style={{margin: '32px auto', maxWidth: 800}}>
-          <h3>Chat History</h3>
-          {history.length === 0 ? <div>No history yet.</div> : (
-            <div style={{maxHeight: 400, overflowY: 'auto'}}>
-              {history.map((h, idx) => (
-                <div key={idx} style={{background: '#f8fafc', marginBottom: 12, padding: 16, borderRadius: 8, border: '1px solid #e2e8f0'}}>
-                  <div style={{marginBottom: 8}}>
-                    <strong>Selected Text:</strong> 
-                    <div style={{background: '#fff', padding: 8, borderRadius: 4, marginTop: 4, fontSize: '0.9em'}}>
-                      {h.selected_text.substring(0, 200)}{h.selected_text.length > 200 ? '...' : ''}
-                    </div>
-                  </div>
-                  <div style={{marginBottom: 8}}>
-                    <strong>Q:</strong> {h.question}
-                  </div>
-                  <div style={{marginBottom: 8}}>
-                    <strong>A:</strong> {h.answer}
-                  </div>
-                  <div style={{fontSize: '0.8em', color: '#888'}}>{h.timestamp}</div>
-                </div>
-              ))}
+        
+        {fileName && history.length > 0 && (
+  <div style={{margin: '32px auto', maxWidth: 800}}>
+    <h3>Chat History</h3>
+    <div style={{maxHeight: 400, overflowY: 'auto'}}>
+      {history.map((h, idx) => (
+        <div
+          key={idx}
+          style={{
+            background: '#f8fafc',
+            marginBottom: 12,
+            padding: 16,
+            borderRadius: 8,
+            border: '1px solid #e2e8f0'
+          }}
+        >
+          <div style={{marginBottom: 8}}>
+            <strong>Selected Text:</strong>
+            <div
+              style={{
+                background: '#fff',
+                padding: 8,
+                borderRadius: 4,
+                marginTop: 4,
+                fontSize: '0.9em'
+              }}
+            >
+              {(h?.selected_text || '').substring(0, 200)}
+              {(h?.selected_text || '').length > 200 ? '...' : ''}
             </div>
-          )}
+          </div>
+          <div style={{marginBottom: 8}}>
+            <strong>Q:</strong> {h?.question || ''}
+          </div>
+          <div style={{marginBottom: 8}}>
+            <strong>A:</strong> {h?.answer || ''}
+          </div>
+          <div style={{fontSize: '0.8em', color: '#888'}}>{h?.timestamp || ''}</div>
         </div>
+      ))}
+    </div>
+  </div>
+)}
       <div className="statusText">
           Backend status: {backendMsg}
         </div>

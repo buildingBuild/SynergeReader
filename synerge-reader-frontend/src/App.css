@@ -119,6 +119,39 @@ letter-spacing: 5px;
 
 
 
+.overallFile{
+  margin-top: -50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-info {
+  font-family: "Public Sans";
+  margin-top: -10px;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  background-color: white;
+  width: 1000px
+}
+
+.file-info h1{
+font-family: "Public Sans";
+font-weight: 100;
+letter-spacing: 4px;
+
+
+}
+
+.file-info p{
+font-family: "Public Sans";
+letter-spacing: 2px;
+
+}
+
+
+
+
 
 /* Upload Card Styles */
 .alpha-upload-card {

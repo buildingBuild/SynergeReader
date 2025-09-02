@@ -36,7 +36,9 @@ export default function FileUpload({ onFileParsed, setIsLoading, setError }) {
       // Mirror your existing UI expectations
       onFileParsed?.(
         `Uploaded length: ${data?.text_length ?? 0} chars`,
-        file.name
+        file.name, {
+        size: file.size
+      }
       );
     } catch (err) {
       setError(
